@@ -10,11 +10,17 @@ $(document).ready(function(){
       $('#fcc').html("Freecodecamp is Online");
     }
   });
+  
+   $('#results-header').prepend("<div class='row'>"+"<div class='col-md-3'>"+"<h4>Icon</h4>"+"</div>"
+                             +"<div class='col-md-3'>"+"<h4>Channel Name</h4>"+"</a>"+"</div>"
+                             +"<div class='col-md-3'>"+"<h4>Status</h4>"+"</div>"
+                             +"<div class='col-md-3'>"+"<h4>Viewers</h4>"+"</div>");
 
   //gets all the streams
   streamUsernames.forEach(function(currentStream){
     var status;
     $.getJSON('https://wind-bow.glitch.me/twitch-api/streams/' + currentStream, function(data) {
+
       if(data.stream === null){
         status= "offline";
         console.log(currentStream +" offline " +status);
@@ -35,12 +41,21 @@ $(document).ready(function(){
             status: ((status) ? status : 'Offline')
           }
           console.log(info)
-
+          
+          $('#results').append("<div class='row'>"+"<div class='col-md-3'>"+"<img height='42' width='42' src= '"+info.img+"' />"+"</div>"
+                             +"<div class='col-md-3'>"+"<p>"+"<a href="+info.url+" target='blank'>"+info.display_name+"</p>"+"</a>"+"</div>"
+                             +"<div class='col-md-3'>"+"<p>"+info.status+"</p>"+"</div>"
+                             +"<div class='col-md-3'>"+"<p>-</p>"+"</div>"+"</div>");
+          
+          
+          
         });
+        
+        
 
       }
 
-      else{
+      else {
         status= "online";
         console.log(currentStream +" online "+status);
 
@@ -55,8 +70,18 @@ $(document).ready(function(){
           url: myData.channel.url
         }
         console.log(info);
+        
+       
+
+        $('#results').prepend("<div class='row'>"+"<div class='col-md-3'>"+"<img height='42' width='42' src= '"+info.img+"' />"+"</div>"
+                             +"<div class='col-md-3'>"+"<p>"+"<a href="+info.url+" target='blank'>"+info.display_name+"</p>"+"</a>"+"</div>"
+                             +"<div class='col-md-3'>"+"<p>"+info.status+"</p>"+"</div>"
+                             +"<div class='col-md-3'>"+"<p>"+info.viewers+"</p>"+"</div>"+"</div>");
+      
 
       }
+
+
 
     });
 
