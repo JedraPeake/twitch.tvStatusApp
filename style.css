@@ -1,3 +1,21 @@
 #results div{
   margin-top:20px;
 }
+
+#closed div{
+  margin-top:20px;
+}
+
+body{
+  background:url("https://static.pexels.com/photos/195430/pexels-photo-195430.jpeg");
+  color:white;
+  background-size: cover;
+}
+
+a{
+  color:white;
+}
+
+.container{
+  background:rgba(0,0,0,0.5);
+}
